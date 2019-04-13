@@ -2,6 +2,7 @@ import "./styles/style.sass";
 import $ from "jquery";
 import { autocomplete } from "./functions/autocomplete.js";
 import  { verify }  from "./functions/verify.js"
+import {getCountries} from "./functions/getCountries"
 var $country ;
 
 var countries = ["Poland","France","Germany","Spain"];
