@@ -14,10 +14,11 @@
 </head>
 
 <body>
-  <form>
+  <form action="" id="rectask">
     <div class="autocomplete" >
-    <label for="countries">Wybierz kraj</label><br>
-    <input type="text" name="country" id="country" list="countries" autocomplete="off"/>
+    <label for="countries" style="width: 100%">Pick country</label><br>
+    <div id="error1"></div>
+    <input type="text" name="country" id="country" autocomplete="off"/>
     </div>
     <div class="radios">
       <label><input type="radio" name="pollution" value="o3"> o3<br></label>
@@ -25,7 +26,8 @@
       <label><input type="radio" name="pollution" value="no2"> no2<br></label>
       <label><input type="radio" name="pollution" value="bc" > bc<br></label>
       <label><input type="radio" name="pollution" value="pm10"> pm10<br></label>
-      <label><input type="radio" name="pollution" value="pm25"> pm25<br></label>   
+      <label><input type="radio" name="pollution" value="pm25"> pm25<br></label>
+      <div id="error2"></div>   
     </div>
     
     <input type="submit" value="Send">
