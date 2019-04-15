@@ -14,7 +14,7 @@ export function getCountries(country, pollution){
             url = url+"&country=ES"
             break;
         case "GERMANY":   
-            url = url+"&country=GE"   
+            url = url+"&country=DE"   
             break;
         case "FRANCE":  
             url = url+"&country=FR"     
