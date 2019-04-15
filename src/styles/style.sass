@@ -4,7 +4,7 @@ html
     overflow-x: hidden
 
 body 
-    margin: 0px 0px 0px 0px
+    margin: 0px auto
     width: 100%
 .radios
     z-index: 1
@@ -50,11 +50,23 @@ form input[type=text]
 form label
     width: 50%    
     float: left
-#acordion
-    width: 60%
-    width: 300px
+#wrapper
+    width: 90%    
     margin: 0 auto
     display: block
-#acordion > div > .hidden
-    display: none
-    
+.panel 
+  padding: 0 18px
+  background-color: white
+  display: none
+  overflow: hidden
+  max-height: 400px
+  overflow-y: scroll
+  padding: 0px 0px 0px 0px
+  background-color: #ada
+
+.accordion
+    margin: 0px auto
+    font-size: 26px
+    color: #aaaaaa
+    border: 2px solid blue
+    text-align: center
