@@ -20,37 +20,40 @@ export function take(array){
             }).done(function(data){
                     var x = data.query.pages;
                     var ob = Object.keys(x)[0];
-                    var describtion = x[ob]["extract"];
-                   
+                    var describtion = x[ob]["extract"];                   
                     header = document.createElement("DIV");
                     header.innerHTML = element;
                     header.classList.add('accordion')
-                    descr = document.createElement("DIV");
+                    descr = document.createElement("p");
                     descr.classList.add('panel');
                     descr.innerHTML = describtion;
                     acordion.appendChild(header);
-                    acordion.appendChild(descr); 
-                    
-                    var acc = document.getElementsByClassName("accordion");
-                    var x;
-
-                    for (x = 0; x < acc.length; x++) {
-                        acc[x].addEventListener("click", function() {                       
-                        var panel = this.nextElementSibling;                        
-                        if (panel.style.display === "block") {
-                            panel.style.display = "none";
-                            } 
-                        else {
-                             panel.style.display = "block";
-                            }
-                    });
-} 
+                    acordion.appendChild(descr);                    
                     
                     iterator = iterator + 1;
                     if(iterator < 10){
                         takeElement(array[iterator]);
                     }
+                    var acc = document.getElementsByClassName("accordion");
+                    var x;
+
+                    
+                    acc[iterator-1].addEventListener("click", function() {                       
+                    var panel = this.nextElementSibling;
+                    console.log(panel);                       
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    }        
+                    else {
+                        panel.style.display = "block";
+                    }
+                });
+      
+
             });
+           
+                    
     }
     takeElement(element);
+    
 }
