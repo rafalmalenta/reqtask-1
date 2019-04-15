@@ -1,24 +1,23 @@
 import  $  from "jquery";
+import {take} from "./take.js"
 
-
-export function getCountries(country, pollution){
-    var url;
-    var baseurl = "https://api.openaq.org/v1/measurements?order_by=value&sort=desc&limit=30&parameter="+pollution;
-    var pollutedCities = [], addToArray=true;
+export function getCountries(country, pollution){    
+    var url = "https://api.openaq.org/v1/measurements?order_by=value&sort=desc&limit=3110&parameter="+pollution;
+    var pollutedCities = [], addToArray=true;    
     country = country.toUpperCase();
-    
+    var page = 1;
     switch(country) {
         case "POLAND":
-            url = baseurl+"&country=PL"
+            url = url+"&country=PL"
             break;
         case "SPAIN":
-            url = baseurl+"&country=ES"
+            url = url+"&country=ES"
             break;
         case "GERMANY":   
-            url = baseurl+"&country=GE"   
+            url = url+"&country=GE"   
             break;
         case "FRANCE":  
-            url = baseurl+"&country=FR"     
+            url = url+"&country=FR"     
             break;           
     }
     var time = new Date(); 
@@ -26,43 +25,42 @@ export function getCountries(country, pollution){
     var month = time.getMonth()+1;
     var day = time.getDate();
     url = url + "&date_from="+year+"-"+month+"-"+day;
-    console.log(url);
-    var needMoreData = true;
-    var page = 1;
-    //while( page < 3){        
+    
+    function takeData(page){         
         $.ajax({
-            type: "get",
-            url: url+ "&page=" + page,
-            success: function(data){
-                console.log(" " + data.meta.found);
+            type: "GET",           
+            url: url + "&page=" + page,
+            success: function(data){               
                 var alldata = data.meta.found;
-                page = data.meta.page;
-                var limit = data.meta.limit;
-
+                var curpage = data.meta.page;
+                var limit = data.meta.limit; 
                 $.each(data.results, function(i, item){
                     var addToArray = true;
-                    $.each(pollutedCities,function(j, city){                                                
-                        console.log(city.toUpperCase() +" "+ item.city.toUpperCase());
+                    $.each(pollutedCities,function(j, city){
                         if(city.toUpperCase() === item.city.toUpperCase()){
                             addToArray = false;                              
                         }
                     });                    
                     if(addToArray && pollutedCities.length<10){
                         pollutedCities.push(item.city);
-                    }
-                    page = page++;
-                    //if(pollutedCities.length>9 || (alldata >= page*limit)){
-                      //  needMoreData = false;
-                   // };
-                    
-                
-            });
-            console.log(pollutedCities);
+                        //console.log(pollutedCities+" ");
+                    } 
+                                       
+                });
+            
+            if(pollutedCities.length < 10 && (alldata>curpage*limit)){
+                page = page + 1;                
+                takeData(page);
+            }
+            take(pollutedCities)
         },
         error: "",
         
         });
-   // }
+        //console.log(pollutedCities);
+          
+    }
+    takeData(page);
     
 }
 

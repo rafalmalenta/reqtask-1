@@ -6,7 +6,7 @@ import {getCountries} from "./functions/getCountries"
 var $country ;
 
 var countries = ["Poland","France","Germany","Spain"];
-var storage = localStorage.getItem("inputValue");
+var storage = localStorage.getItem("inputvalue");
 
 $(function(){
   $country = $("#country");
@@ -22,6 +22,7 @@ $(function(){
         pollution = radios[i].value;       
         }
     }
+    
     if(verify(countries,input.value,pollution)){        
         getCountries(input.value,pollution);
       }
@@ -31,6 +32,8 @@ $(function(){
   $country.on("keypress",function(){   
     autocomplete(document.getElementById("country"), countries);      
   });
-
+  (function(){
+    input.value = storage;    
+  })();
 
 });

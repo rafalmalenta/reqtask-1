@@ -19,6 +19,7 @@ export function autocomplete(inp, arr) {
             b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
             b.addEventListener("click", function(e) {
                 inp.value = this.getElementsByTagName("input")[0].value;
+                localStorage.setItem('inputvalue', inp.value);
                 closeAllLists();
             });
             a.appendChild(b);
@@ -61,9 +62,11 @@ export function autocomplete(inp, arr) {
       for (var i = 0; i < x.length; i++) {
         if (elmnt != x[i] && elmnt != inp) {
           x[i].parentNode.removeChild(x[i]);
+          
         }
       }
     }
+
     document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
