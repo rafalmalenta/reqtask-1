@@ -7,9 +7,7 @@ export function take(array){
     acordion.innerHTML = "";
     var element = array[0];
 
-    console.log(array)
-    function takeElement(element){
-        //console.log(element);
+    function takeElement(element){        
         $.ajax({
             type: "GET",  
             data: {
@@ -21,13 +19,9 @@ export function take(array){
             error: "",        
             }).done(function(data){
                     var x = data.query.pages;
-                    //console.log(url)
-                    //console.log(element)
                     var ob = Object.keys(x)[0];
                     var describtion = x[ob]["extract"];
-                    var title = x[ob]["title"];
-                    //console.log(title);
-                                          
+                   
                     header = document.createElement("DIV");
                     header.innerHTML = element;
                     header.classList.add('accordion')
@@ -41,10 +35,8 @@ export function take(array){
                     var x;
 
                     for (x = 0; x < acc.length; x++) {
-                        acc[x].addEventListener("click", function() {
-                        //this.classList.toggle("active");
-                        var panel = this.nextElementSibling;
-                        console.log(panel)
+                        acc[x].addEventListener("click", function() {                       
+                        var panel = this.nextElementSibling;                        
                         if (panel.style.display === "block") {
                             panel.style.display = "none";
                             } 

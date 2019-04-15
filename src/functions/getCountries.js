@@ -14,7 +14,7 @@ export function getCountries(country, pollution){
             url = url+"&country=ES"
             break;
         case "GERMANY":   
-            url = url+"&country=DE"   
+            url = url+"&country=GE"   
             break;
         case "FRANCE":  
             url = url+"&country=FR"     
@@ -43,7 +43,7 @@ export function getCountries(country, pollution){
                     });                    
                     if(addToArray && pollutedCities.length<10){
                         pollutedCities.push(item.city);
-                        //console.log(pollutedCities+" ");
+                       
                     } 
                                        
                 });
@@ -57,7 +57,7 @@ export function getCountries(country, pollution){
         error: "",
         
         });
-        //console.log(pollutedCities);
+        
           
     }
     takeData(page);
