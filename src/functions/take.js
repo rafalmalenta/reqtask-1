@@ -39,8 +39,7 @@ export function take(array){
 
                     
                     acc[iterator-1].addEventListener("click", function() {                       
-                    var panel = this.nextElementSibling;
-                    console.log(panel);                       
+                    var panel = this.nextElementSibling;                                           
                     if (panel.style.display === "block") {
                         panel.style.display = "none";
                     }        
