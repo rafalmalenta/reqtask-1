@@ -14,7 +14,7 @@ export function getCountries(country, pollution){
             url = url+"&country=ES"
             break;
         case "GERMANY":   
-            url = url+"&country=GE"   
+            url = url+"&country=DE"   
             break;
         case "FRANCE":  
             url = url+"&country=FR"     
@@ -30,12 +30,15 @@ export function getCountries(country, pollution){
         $.ajax({
             type: "GET",           
             url: url + "&page=" + page,
-            success: function(data){               
+            success: "",
+            error: "",        
+        }).done(function(data){               
                 var alldata = data.meta.found;
                 var curpage = data.meta.page;
                 var limit = data.meta.limit; 
+                console.log(data);
                 $.each(data.results, function(i, item){
-                    var addToArray = true;
+                    addToArray = true;
                     $.each(pollutedCities,function(j, city){
                         if(city.toUpperCase() === item.city.toUpperCase()){
                             addToArray = false;                              
@@ -53,10 +56,11 @@ export function getCountries(country, pollution){
                 takeData(page);
             }
             take(pollutedCities)
-        },
-        error: "",
-        
-        });
+        }
+
+
+
+        );
         
           
     }
